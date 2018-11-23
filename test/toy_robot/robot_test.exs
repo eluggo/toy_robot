@@ -4,87 +4,87 @@ defmodule ToyRobot.RobotTest do
 
   describe "place/3" do
     test "should place robot on position" do
-      assert Robot.place(0, 0, :north) == %Robot{position: {0, 0}, facing: :north}
-      assert Robot.place(1, 0, :south) == %Robot{position: {1, 0}, facing: :south}
-      assert Robot.place(1, 1, :east) == %Robot{position: {1, 1}, facing: :east}
+      assert Robot.place(0, 0, :north) == {:ok, %Robot{position: {0, 0}, facing: :north, placed: true}}
+      assert Robot.place(1, 0, :south) == {:ok, %Robot{position: {1, 0}, facing: :south, placed: true}}
+      assert Robot.place(1, 1, :east) == {:ok, %Robot{position: {1, 1}, facing: :east, placed: true}}
     end
   end
 
   describe "report/1" do
     test "should report position" do
-      assert Robot.report(%Robot{position: {0, 0}, facing: :north}) == "0,0,NORTH"
+      assert Robot.report(%Robot{position: {0, 0}, facing: :north, placed: true}) == {:ok, "0,0,NORTH"}
     end
   end
 
   describe "left/1" do
     test "should turn left" do
-      assert Robot.left(%Robot{position: {0, 0}, facing: :north}) == %Robot{
+      assert Robot.left(%Robot{position: {0, 0}, facing: :north, placed: true}) == {:ok, %Robot{
                position: {0, 0},
-               facing: :west
-             }
+               facing: :west, placed: true
+             }}
 
-      assert Robot.left(%Robot{position: {0, 0}, facing: :west}) == %Robot{
+      assert Robot.left(%Robot{position: {0, 0}, facing: :west, placed: true}) == {:ok, %Robot{
                position: {0, 0},
-               facing: :south
-             }
+               facing: :south, placed: true
+             }}
 
-      assert Robot.left(%Robot{position: {0, 0}, facing: :south}) == %Robot{
+      assert Robot.left(%Robot{position: {0, 0}, facing: :south, placed: true}) == {:ok, %Robot{
                position: {0, 0},
-               facing: :east
-             }
+               facing: :east, placed: true
+             }}
 
-      assert Robot.left(%Robot{position: {0, 0}, facing: :east}) == %Robot{
+      assert Robot.left(%Robot{position: {0, 0}, facing: :east, placed: true}) == {:ok, %Robot{
                position: {0, 0},
-               facing: :north
-             }
+               facing: :north, placed: true
+             }}
     end
   end
 
   describe "right/1" do
     test "should turn right" do
-      assert Robot.right(%Robot{position: {0, 0}, facing: :north}) == %Robot{
+      assert Robot.right(%Robot{position: {0, 0}, facing: :north, placed: true}) == {:ok, %Robot{
                position: {0, 0},
-               facing: :east
-             }
+               facing: :east, placed: true
+             }}
 
-      assert Robot.right(%Robot{position: {0, 0}, facing: :west}) == %Robot{
+      assert Robot.right(%Robot{position: {0, 0}, facing: :west, placed: true}) == {:ok, %Robot{
                position: {0, 0},
-               facing: :north
-             }
+               facing: :north, placed: true
+             }}
 
-      assert Robot.right(%Robot{position: {0, 0}, facing: :south}) == %Robot{
+      assert Robot.right(%Robot{position: {0, 0}, facing: :south, placed: true}) == {:ok, %Robot{
                position: {0, 0},
-               facing: :west
-             }
+               facing: :west, placed: true
+             }}
 
-      assert Robot.right(%Robot{position: {0, 0}, facing: :east}) == %Robot{
+      assert Robot.right(%Robot{position: {0, 0}, facing: :east, placed: true}) == {:ok, %Robot{
                position: {0, 0},
-               facing: :south
-             }
+               facing: :south, placed: true
+             }}
     end
   end
 
   describe "move/1" do
     test "should move foward" do
-      assert Robot.move(%Robot{position: {0, 0}, facing: :north}) == %Robot{
+      assert Robot.move(%Robot{position: {0, 0}, facing: :north, placed: true}) == {:ok, %Robot{
                position: {0, 1},
-               facing: :north
-             }
+               facing: :north, placed: true
+             }}
 
-      assert Robot.move(%Robot{position: {0, 0}, facing: :west}) == %Robot{
+      assert Robot.move(%Robot{position: {0, 0}, facing: :west, placed: true}) == {:ok, %Robot{
                position: {-1, 0},
-               facing: :west
-             }
+               facing: :west, placed: true
+             }}
 
-      assert Robot.move(%Robot{position: {0, 0}, facing: :south}) == %Robot{
+      assert Robot.move(%Robot{position: {0, 0}, facing: :south, placed: true}) == {:ok, %Robot{
                position: {0, -1},
-               facing: :south
-             }
+               facing: :south, placed: true
+             }}
 
-      assert Robot.move(%Robot{position: {0, 0}, facing: :east}) == %Robot{
+      assert Robot.move(%Robot{position: {0, 0}, facing: :east, placed: true}) == {:ok, %Robot{
                position: {1, 0},
-               facing: :east
-             }
+               facing: :east, placed: true
+             }}
     end
   end
 end
