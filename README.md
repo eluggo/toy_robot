@@ -1,4 +1,5 @@
 # Toy Robot Simulator
+Para detalhes do que já foi feito consultar o arquivo de [commits](./COMMITS.md)
 
 ## Description
 
